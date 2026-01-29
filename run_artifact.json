@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-01-28 20:51:06",
+  "config": {
+    "random_state": 42,
+    "test_size": 0.2,
+    "cv_folds": 5,
+    "primary_metric": "roc_auc",
+    "threshold": 0.5,
+    "models": {
+      "logreg": {
+        "C": 1.0
+      },
+      "tree": {
+        "max_depth": 6,
+        "min_samples_leaf": 30
+      },
+      "rf": {
+        "n_estimators": 100,
+        "max_depth": 8,
+        "min_samples_leaf": 10
+      }
+    },
+    "slices": {
+      "low_tenure": {
+        "col": "tenure_days",
+        "op": "<",
+        "value": 180
+      },
+      "high_support": {
+        "col": "support_tickets",
+        "op": ">=",
+        "value": 3
+      }
+    }
+  },
+  "results": [
+    {
+      "model": "logreg",
+      "cv_auc_mean": 0.8098538792901506,
+      "cv_auc_std": 0.02911835692645778,
+      "accuracy": 0.85,
+      "precision": 0.7575757575757576,
+      "recall": 0.2336448598130841,
+      "f1": 0.35714285714285715,
+      "roc_auc": 0.8101078652537392
+    },
+    {
+      "model": "rf",
+      "cv_auc_mean": 0.7892726849688126,
+      "cv_auc_std": 0.031210920930003945,
+      "accuracy": 0.8333333333333334,
+      "precision": 0.7058823529411765,
+      "recall": 0.11214953271028037,
+      "f1": 0.1935483870967742,
+      "roc_auc": 0.7798904286174669
+    },
+    {
+      "model": "tree",
+      "cv_auc_mean": 0.7375621222878319,
+      "cv_auc_std": 0.02483173360437238,
+      "accuracy": 0.8116666666666666,
+      "precision": 0.453125,
+      "recall": 0.27102803738317754,
+      "f1": 0.3391812865497076,
+      "roc_auc": 0.7448768743720497
+    }
+  ],
+  "slices": [
+    {
+      "slice": "low_tenure",
+      "count": 146,
+      "accuracy": 0.7328767123287672,
+      "precision": 0.8421052631578947,
+      "recall": 0.3076923076923077,
+      "f1": 0.4507042253521127,
+      "roc_auc": 0.7258592471358428
+    },
+    {
+      "slice": "high_support",
+      "count": 139,
+      "accuracy": 0.7769784172661871,
+      "precision": 0.6923076923076923,
+      "recall": 0.43902439024390244,
+      "f1": 0.5373134328358209,
+      "roc_auc": 0.8066202090592334
+    }
+  ],
+  "best_model": "logreg"
+}
